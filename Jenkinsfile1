@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        
+        stage("Git Checkout"){
+            steps{
+                git url: "https://github.com/Tarunashwini/Shopping-Cart.git", branch: "main"
+            }
+        }
+        
+        
+        
+        stage('Docker Deploy To Container') {
+            steps {
+                echo 'Docker Deploy To Container'
+                withCredentials([usernamePassword(credentialsId:"dockerhub",passwordVariable:"dpass", usernameVariable:"duser")]){
+                    sh "docker-compose down && docker-compose up -d"
+                }
+            }
+        }
+        
+        
+    }
+}
