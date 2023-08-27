@@ -1,6 +1,0 @@
-version : "3.3"
-services :
-  web :
-     image : tarunashwini/shopping-cart:latest
-     ports :
-         - "8070:8070"
